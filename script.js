@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Gemini API integration
   async function queryGemini(userQuery) {
     try {
-      const apiKey = process.env.GEMINI_API_KEY
+      const apiKey = "AIzaSyBvzJ174bqIUaDtJoyrXl0BGWJEO2vXeGI"
       const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent"
 
       const prompt = `
