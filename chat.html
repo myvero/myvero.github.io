@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vero - AI Fact Checking Chat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container chat-page">
+    <!-- Header -->
+    <header class="header chat-header">
+      <div class="container header-container">
+        <div class="header-left">
+          <a href="index.html" class="back-button">
+            <i class="lucide-arrow-left" aria-hidden="true"></i>
+          </a>
+          <div class="chat-header-logo">
+            <i class="lucide-check-circle" aria-hidden="true"></i>
+            <span class="logo-text">Vero</span>
+            <span class="chat-header-badge">AI Fact Checker</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button id="info-button" class="btn btn-ghost btn-icon tooltip">
+            <i class="lucide-info" aria-hidden="true"></i>
+            <span class="tooltip-text">Vero uses AI to help verify information. Always cross-check important facts with multiple sources.</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container chat-container">
+        <div class="chat-box">
+          <div id="chat-messages" class="chat-messages">
+            <div id="chat-welcome" class="chat-welcome">
+              <div class="chat-welcome-icon">
+                <i class="lucide-check-circle" aria-hidden="true"></i>
+              </div>
+              <h2 class="chat-welcome-title">Welcome to Vero</h2>
+              <p class="chat-welcome-description">
+                Ask me to verify any claim or fact. I'll analyze the information and provide you with a verification based on reliable sources.
+              </p>
+              <div class="chat-welcome-suggestions">
+                <button class="btn btn-outline suggestion-btn" data-suggestion="Is drinking alkaline water healthier than regular water?">
+                  Is alkaline water healthier?
+                </button>
+                <button class="btn btn-outline suggestion-btn" data-suggestion="Did NASA spend millions developing a pen that works in space?">
+                  NASA's space pen cost millions?
+                </button>
+                <button class="btn btn-outline suggestion-btn" data-suggestion="Is it true that we only use 10% of our brains?">
+                  Do we use only 10% of our brain?
+                </button>
+                <button class="btn btn-outline suggestion-btn" data-suggestion="Does vitamin C prevent colds?">
+                  Does vitamin C prevent colds?
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-container">
+            <form id="chat-form" class="chat-form">
+              <input type="text" id="chat-input" class="chat-input" placeholder="Ask me to verify something..." autocomplete="off">
+              <button type="submit" id="send-button" class="btn btn-primary">
+                <i class="lucide-send" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer chat-footer">
+      <div class="container footer-container">
+        <div class="footer-logo">
+          <i class="lucide-check-circle" aria-hidden="true"></i>
+          <span>Vero</span>
+        </div>
+        <div class="footer-copyright">
+          &copy; 2023 Vero AI. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+          <a href="#" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
