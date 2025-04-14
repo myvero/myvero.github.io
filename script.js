@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Theme toggle functionality
+  const themeToggle = document.getElementById("theme-toggle")
+  const htmlElement = document.documentElement
+
+  // Check for saved theme preference or use system preference
+  const savedTheme = localStorage.getItem("theme")
+  if (savedTheme) {
+    htmlElement.className = savedTheme
+  } else {
+    // Check system preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    htmlElement.className = prefersDark ? "dark" : "light"
+  }
+
+  // Theme toggle button functionality
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = htmlElement.className
+      const newTheme = currentTheme === "light" ? "dark" : "light"
+
+      htmlElement.className = newTheme
+      localStorage.setItem("theme", newTheme)
+    })
+  }
+
   // Chat functionality
   const chatForm = document.getElementById("chat-form")
   const chatInput = document.getElementById("chat-input")
@@ -249,6 +274,9 @@ document.addEventListener("DOMContentLoaded", () => {
               (source) => `
             <li class="chat-sources-item">
               <i class="lucide-external-link" aria-hidden="true"></i>
+              ${escapeHTML(source)}
+            </li>
+          \`  aria-hidden="true"></i>
               ${escapeHTML(source)}
             </li>
           `,
