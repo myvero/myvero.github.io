@@ -1,21 +1,62 @@
 /* Base Styles */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #10b981;
-  --primary-hover: #059669;
-  --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #1e293b;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #1e293b;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #10b981;
-  --radius: 0.5rem;
+  /* Light theme (Blue-Purple ish) */
+  --background: #F8F7FC; /* Very light, off-white */
+  --foreground: #301934; /* Dark purple, good contrast */
+  --primary: #8A89DB; /* Prime blue-purple */
+  --primary-hover: #7675C7; /* Slightly darker hover */
+  --primary-foreground: #ffffff; /* White text on primary */
+  --secondary: #E8E7F3; /* Light grey with a hint of purple */
+  --secondary-foreground: #4A3B53; /* Medium purple-grey */
+  --muted: #E8E7F3; /* Same as secondary for subtle backgrounds */
+  --muted-foreground: #7B6888; /* Desaturated purple-grey */
+  --accent: #E8E7F3; /* Same as secondary for subtle accents */
+  --accent-foreground: #4A3B53; /* Same as secondary-foreground */
+  --border: #D2D0E6; /* Light grey-purple border */
+  --input: #D2D0E6; /* Light grey-purple input background */
+  --ring: #8A89DB; /* Primary color for focus rings */
+  --card-bg: #ffffff; /* White for card backgrounds */
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+  --header-bg: rgba(255, 255, 255, 0.9); /* Slightly transparent white header */
+  --features-bg: #F2F1FA; /* Very light purple background for features */
+  --testimonials-bg: #F2F1FA; /* Very light purple background for testimonials */
+  --cta-bg: #EDEAF7; /* Lightest purple for call to action */
+  --chat-bubble-user: #8A89DB; /* Primary for user chat bubbles */
+  --chat-bubble-ai: #E8E7F3; /* Secondary for AI chat bubbles */
+  --chat-bubble-ai-verified: #DFDAEE; /* Slightly darker secondary for verified AI */
+  --tooltip-bg: #4A3B53; /* Medium purple-grey for tooltips */
+  --tooltip-color: #ffffff; /* White text on tooltips */
+  --radius: 1.5rem;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.dark {
+  /* Dark theme */
+  --background: #000414;
+  --foreground: #e2e8f0;
+  --primary: #8A89DB;
+  --primary-hover: #7675c7;
+  --primary-foreground: #ffffff;
+  --secondary: #15192C;
+  --secondary-foreground: #e2e8f0;
+  --muted: #15192C;
+  --muted-foreground: #94a3b8;
+  --accent: #15192C;
+  --accent-foreground: #e2e8f0;
+  --border: #2d3748;
+  --input: #15192C;
+  --ring: #8A89DB;
+  --card-bg: #000414;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --header-bg: rgba(0, 4, 20, 0.95);
+  --features-bg: #00061c;
+  --testimonials-bg: #00061c;
+  --cta-bg: #000518;
+  --chat-bubble-user: #8A89DB;
+  --chat-bubble-ai: #15192C;
+  --chat-bubble-ai-verified: #15192C;
+  --tooltip-bg: #1e293b;
+  --tooltip-color: #e2e8f0;
 }
 
 * {
@@ -34,6 +75,7 @@ body {
   background-color: var(--background);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -44,6 +86,9 @@ a {
 button {
   font-family: inherit;
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 /* Layout */
@@ -57,7 +102,7 @@ button {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 main {
@@ -71,13 +116,14 @@ main {
   z-index: 50;
   width: 100%;
   border-bottom: 1px solid var(--border);
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--header-bg);
   backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-container {
   display: flex;
-  height: 4rem;
+  height: 4.5rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -97,10 +143,12 @@ main {
 .logo i {
   color: var(--primary);
   font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .logo-text {
   font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .main-nav {
@@ -113,16 +161,77 @@ main {
   font-weight: 500;
   color: var(--muted-foreground);
   transition: color 0.2s;
+  position: relative;
+  padding: 0.25rem 0;
 }
 
 .nav-link:hover {
   color: var(--foreground);
 }
 
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
 .header-right {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--secondary);
+}
+
+.theme-toggle i {
+  font-size: 1.25rem;
+  color: var(--foreground);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+html.light #theme-toggle-dark-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+  position: absolute;
+}
+
+html.light #theme-toggle-light-icon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+html.dark #theme-toggle-light-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+  position: absolute;
+}
+
+html.dark #theme-toggle-dark-icon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 /* Buttons */
@@ -133,9 +242,33 @@ main {
   border-radius: var(--radius);
   font-weight: 500;
   font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease;
   border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.btn:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
 }
 
 .btn-lg {
@@ -146,10 +279,17 @@ main {
 .btn-primary {
   background-color: var(--primary);
   color: var(--primary-foreground);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-ghost {
@@ -169,6 +309,8 @@ main {
 
 .btn-outline:hover {
   background-color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .btn-icon {
@@ -180,12 +322,13 @@ main {
 
 /* Hero Section */
 .hero {
-  padding: 3rem 1rem;
+  padding: 4rem 1.5rem;
+  transition: background-color 0.3s ease;
 }
 
 .hero-grid {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
 }
 
@@ -193,19 +336,24 @@ main {
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero-description {
   color: var(--muted-foreground);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   max-width: 600px;
+  font-size: 1.125rem;
 }
 
 .hero-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .chat-preview {
@@ -214,9 +362,15 @@ main {
   margin: 0 auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background-color: var(--background);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-preview:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
 }
 
 .chat-preview-header {
@@ -225,6 +379,7 @@ main {
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid var(--border);
+  transition: border-color 0.3s ease;
 }
 
 .chat-preview-header-left {
@@ -235,6 +390,7 @@ main {
 
 .chat-preview-header-left i {
   color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .chat-preview-title {
@@ -244,6 +400,7 @@ main {
 .chat-preview-badge {
   font-size: 0.75rem;
   color: var(--muted-foreground);
+  transition: color 0.3s ease;
 }
 
 .chat-preview-messages {
@@ -269,34 +426,47 @@ main {
   color: var(--muted-foreground);
   font-size: 0.875rem;
   flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .chat-preview-avatar.ai {
-  background-color: #ecfdf5;
+  background-color: rgb(16 53 185 / 10%);
   color: var(--primary);
 }
 
 .chat-preview-bubble {
   flex: 1;
-  padding: 0.5rem;
-  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
   background-color: var(--muted);
   font-size: 0.875rem;
+  transition: background-color 0.3s ease;
 }
 
 .chat-preview-bubble.ai {
-  background-color: #ecfdf5;
+  background-color: var(--chat-bubble-ai-verified);
 }
 
 .verification-badge {
   font-weight: 500;
   color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.verification-badge i {
+  color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .chat-preview-sources {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   font-size: 0.75rem;
   color: var(--muted-foreground);
+  transition: color 0.3s ease;
 }
 
 .chat-preview-input {
@@ -305,59 +475,80 @@ main {
   gap: 0.5rem;
   padding: 1rem;
   border-top: 1px solid var(--border);
+  transition: border-color 0.3s ease;
 }
 
 .chat-preview-input-field {
   flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
+  padding: 0.625rem 1rem;
+  border-radius: 1.5rem;
   border: 1px solid var(--border);
   background-color: var(--background);
   font-size: 0.875rem;
-  color: var(--muted-foreground);
+  color: var(--foreground);
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-preview-input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(138, 137, 219, 0.2);
 }
 
 /* Section Styles */
 section {
-  padding: 3rem 1rem;
+  padding: 5rem 1.5rem;
+  transition: background-color 0.3s ease;
 }
 
 .features,
 .testimonials {
-  background-color: #f8fafc;
+  background-color: var(--features-bg);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .section-badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.375rem;
-  background-color: #ecfdf5;
+  padding: 0.375rem 1rem;
+  border-radius: 1.5rem;
+  background-color: rgb(16 53 185 / 10%);
   color: var(--primary);
   font-size: 0.875rem;
-  margin-bottom: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .section-badge {
+  background-color: rgba(138, 137, 219, 0.2);
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .section-description {
   color: var(--muted-foreground);
   max-width: 700px;
   margin: 0 auto;
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
 }
 
 /* Features */
 .features-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -365,39 +556,50 @@ section {
 .card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background-color: var(--background);
+  background-color: var(--card-bg);
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow);
+  border-color: var(--primary);
 }
 
 .card-header {
-  padding: 1.5rem 1.5rem 0.5rem;
+  padding: 2rem 2rem 1rem;
 }
 
 .card-header i {
   color: var(--primary);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
 
 .card-title {
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 0.5rem;
+  transition: color 0.3s ease;
 }
 
 .card-content {
-  padding: 0.5rem 1.5rem 1.5rem;
+  padding: 0.5rem 2rem 2rem;
 }
 
 .card-description {
   color: var(--muted-foreground);
   font-size: 0.875rem;
+  transition: color 0.3s ease;
 }
 
 /* How It Works */
 .steps-grid {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -407,113 +609,141 @@ section {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
 }
 
 .step-number {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
-  background-color: #ecfdf5;
+  background-color: rgb(16 53 185 / 10%);
   color: var(--primary);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .step-number {
+  background-color: rgba(138, 137, 219, 0.2);
 }
 
 .step-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
 }
 
 .step-description {
   color: var(--muted-foreground);
+  max-width: 300px;
+  margin: 0 auto;
+  transition: color 0.3s ease;
 }
 
 /* Testimonials */
 .testimonials-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .testimonial-content {
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .testimonial-avatar {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
-  background-color: #e2e8f0;
+  background-color: var(--muted);
+  transition: background-color 0.3s ease;
 }
 
 .testimonial-name {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .testimonial-role {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--muted-foreground);
+  transition: color 0.3s ease;
 }
 
 .testimonial-text {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--muted-foreground);
+  font-style: italic;
+  transition: color 0.3s ease;
 }
 
 /* CTA */
 .cta {
-  background-color: #ecfdf5;
+  background-color: var(--cta-bg);
   text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .cta-content {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
 .cta-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .cta-description {
   color: var(--muted-foreground);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
 }
 
 .cta-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   justify-content: center;
 }
 
 /* Footer */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 1.5rem 1rem;
+  padding: 2.5rem 1.5rem;
   background-color: var(--background);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .footer-logo {
@@ -524,36 +754,56 @@ section {
 
 .footer-logo i {
   color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .footer-copyright {
   font-size: 0.875rem;
   color: var(--muted-foreground);
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .footer-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .footer-link {
   font-size: 0.875rem;
   color: var(--muted-foreground);
   transition: color 0.2s;
+  position: relative;
 }
 
 .footer-link:hover {
   color: var(--foreground);
 }
 
+.footer-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
 /* Chat Page Styles */
 .chat-page {
-  background-color: #f8fafc;
+  background-color: var(--background);
+  transition: background-color 0.3s ease;
 }
 
 .chat-header {
-  background-color: white;
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease;
 }
 
 .back-button {
@@ -564,10 +814,16 @@ section {
   height: 2.5rem;
   border-radius: 50%;
   margin-right: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
 .back-button:hover {
   background-color: var(--secondary);
+}
+
+.back-button i {
+  color: var(--foreground);
+  transition: color 0.3s ease;
 }
 
 .chat-header-logo {
@@ -578,18 +834,25 @@ section {
 
 .chat-header-logo i {
   color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .chat-header-badge {
   display: inline-flex;
   align-items: center;
   height: 1.5rem;
-  padding: 0 0.5rem;
-  border-radius: 0.375rem;
-  background-color: #ecfdf5;
+  padding: 0 0.75rem;
+  border-radius: 0.75rem;
+  background-color: rgb(16 53 185 / 10%);
   color: var(--primary);
   font-size: 0.75rem;
+  font-weight: 500;
   margin-left: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .chat-header-badge {
+  background-color: rgba(138, 137, 219, 0.2);
 }
 
 .tooltip {
@@ -599,8 +862,8 @@ section {
 .tooltip-text {
   visibility: hidden;
   width: 250px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-color);
   text-align: center;
   border-radius: 6px;
   padding: 8px;
@@ -610,9 +873,10 @@ section {
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
   font-size: 0.75rem;
   pointer-events: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tooltip:hover .tooltip-text {
@@ -622,7 +886,7 @@ section {
 
 .chat-container {
   height: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .chat-box {
@@ -631,15 +895,17 @@ section {
   height: calc(100vh - 10rem);
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.5rem;
+  scroll-behavior: smooth;
 }
 
 .chat-welcome {
@@ -656,34 +922,46 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
-  background-color: #ecfdf5;
-  margin-bottom: 1rem;
+  background-color: rgb(16 53 185 / 10%);
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.dark .chat-welcome-icon {
+  background-color: rgba(138, 137, 219, 0.2);
 }
 
 .chat-welcome-icon i {
   color: var(--primary);
-  font-size: 1.5rem;
+  font-size: 2rem;
+  transition: color 0.3s ease;
 }
 
 .chat-welcome-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .chat-welcome-description {
   color: var(--muted-foreground);
   max-width: 32rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
 }
 
 .chat-welcome-suggestions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 100%;
   max-width: 32rem;
 }
@@ -694,11 +972,24 @@ section {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.3s ease;
 }
 
 .chat-message {
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .chat-message.user {
@@ -711,51 +1002,59 @@ section {
 
 .chat-bubble {
   max-width: 80%;
-  padding: 1rem;
-  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .chat-bubble.user {
-  background-color: var(--primary);
+  background-color: var(--chat-bubble-user);
   color: white;
+  border-bottom-right-radius: 0.25rem;
 }
 
 .chat-bubble.ai {
-  background-color: #f1f5f9;
+  background-color: var(--chat-bubble-ai);
   color: var(--foreground);
+  border-bottom-left-radius: 0.25rem;
 }
 
 .chat-verification {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .chat-verification-badge {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .chat-verification-badge i {
   color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .chat-verification-badge span {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .chat-sources {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s ease;
 }
 
 .chat-sources-title {
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--muted-foreground);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 }
 
 .chat-sources-list {
@@ -765,39 +1064,51 @@ section {
 .chat-sources-item {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   font-size: 0.75rem;
   color: var(--muted-foreground);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.chat-sources-item i {
+  color: var(--primary);
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
 }
 
 .chat-input-container {
-  padding: 1rem;
+  padding: 1.25rem;
   border-top: 1px solid var(--border);
+  background-color: var(--card-bg);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .chat-form {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .chat-input {
   flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  border-radius: 1.5rem;
   border: 1px solid var(--border);
-  background-color: transparent;
+  background-color: var(--background);
   font-size: 0.875rem;
+  color: var(--foreground);
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .chat-input:focus {
   outline: none;
-  border-color: var(--ring);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(138, 137, 219, 0.2);
 }
 
 .chat-footer {
-  background-color: white;
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease;
 }
 
 /* Responsive Styles */
@@ -817,23 +1128,23 @@ section {
   }
 
   .hero {
-    padding: 6rem 1rem;
+    padding: 6rem 1.5rem;
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   .hero-description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .section-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .section-description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .features-grid,
@@ -857,6 +1168,24 @@ section {
   }
 
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary);
 }
