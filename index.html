@@ -1,113 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vero - AI Fact Checker</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vero - AI Fact Checking</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <div class="logo">
-                <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L4 6V18L12 22L20 18V6L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 22V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M20 6L12 12L4 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <h1>Vero</h1>
-            </div>
-            <nav class="main-nav">
-                <a href="#" class="active">Chat</a>
-                <a href="#">History</a>
-                <a href="#">About</a>
-            </nav>
-        </header>
-        
-        <div class="hero-section">
-            <div class="hero-content">
-                <h2>AI-Powered Fact Checking</h2>
-                <p>Upload text, files, or videos and get instant verification from our advanced AI system.</p>
-            </div>
-            <div class="hero-image">
-                <div class="gradient-sphere"></div>
-            </div>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <div class="header-left">
+          <a href="index.html" class="logo">
+            <i class="lucide-check-circle" aria-hidden="true"></i>
+            <span class="logo-text">Vero</span>
+          </a>
+          <nav class="main-nav">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#how-it-works" class="nav-link">How It Works</a>
+            <a href="#testimonials" class="nav-link">Testimonials</a>
+          </nav>
         </div>
-        
-        <main class="chat-container">
-            <div class="messages" id="messages">
-                <div class="message ai-message">
-                    <div class="ai-avatar">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L4 6V18L12 22L20 18V6L12 2Z" fill="#8ab4f8" stroke="#8ab4f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 22V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M20 6L12 12L4 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="message-content">
-                        <p>Hello! I'm Vero, your fact-checking assistant. Upload text, files, or videos, and I'll help verify the information.</p>
-                    </div>
-                </div>
+        <div class="header-right">
+          <a href="chat.html" class="btn btn-primary">Try Vero Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <h1 class="hero-title">Fact-check information with AI-powered verification</h1>
+              <p class="hero-description">Vero helps you verify claims, check facts, and get reliable information in seconds with advanced AI technology.</p>
+              <div class="hero-actions">
+                <a href="chat.html" class="btn btn-primary btn-lg">Try Vero Now</a>
+                <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+              </div>
             </div>
-            
-            <div class="input-area">
-                <div class="file-upload-container">
-                    <div class="upload-options">
-                        <label for="file-upload" class="upload-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
-                            Upload
-                        </label>
-                        <input type="file" id="file-upload" accept=".txt,.pdf,.doc,.docx,video/*,image/*" hidden>
-                        <div id="file-name" class="file-name"></div>
-                    </div>
+            <div class="chat-preview">
+              <div class="chat-preview-header">
+                <div class="chat-preview-header-left">
+                  <i class="lucide-check-circle" aria-hidden="true"></i>
+                  <span class="chat-preview-title">Vero</span>
+                  <span class="chat-preview-badge">AI Fact Checker</span>
                 </div>
-                
-                <div class="message-input-container">
-                    <textarea id="message-input" placeholder="Message Vero..."></textarea>
-                    <button id="send-button" class="send-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </button>
+              </div>
+              <div class="chat-preview-messages">
+                <div class="chat-preview-message">
+                  <div class="chat-preview-avatar">U</div>
+                  <div class="chat-preview-bubble">
+                    Does vitamin C prevent colds?
+                  </div>
                 </div>
-                
-                <div class="input-features">
-                    <div class="feature-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                            <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        <span>Images</span>
+                <div class="chat-preview-message">
+                  <div class="chat-preview-avatar ai">V</div>
+                  <div class="chat-preview-bubble ai">
+                    <span class="verification-badge">
+                      <i class="lucide-alert-circle" aria-hidden="true"></i>
+                      Partially Verified
+                    </span>
+                    <p>Regular vitamin C supplementation does not prevent colds in the general population, but it may reduce cold duration and severity by about 8-14%. For people under high physical stress (like marathon runners), vitamin C may reduce cold incidence by up to 50%.</p>
+                    <div class="chat-preview-sources">
+                      <p>Sources: Cochrane Database of Systematic Reviews, Journal of Nutrition Science (2022)</p>
                     </div>
-                    <div class="feature-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                        </svg>
-                        <span>Videos</span>
-                    </div>
-                    <div class="feature-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                        <span>Documents</span>
-                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="chat-preview-input">
+                <input type="text" class="chat-preview-input-field" placeholder="Ask a question..." disabled>
+              </div>
             </div>
-        </main>
-    </div>
-    
-    <script src="script.js"></script>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Features</span>
+            <h2 class="section-title">Why choose Vero?</h2>
+            <p class="section-description">Vero combines advanced AI with reliable sources to help you separate fact from fiction.</p>
+          </div>
+          <div class="features-grid">
+            <div class="card">
+              <div class="card-header">
+                <i class="lucide-zap" aria-hidden="true"></i>
+                <h3 class="card-title">Instant Verification</h3>
+              </div>
+              <div class="card-content">
+                <p class="card-description">Get fact-checked answers in seconds, not minutes. Vero's AI quickly analyzes claims against reliable sources.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <i class="lucide-book-open" aria-hidden="true"></i>
+                <h3 class="card-title">Reliable Sources</h3>
+              </div>
+              <div class="card-content">
+                <p class="card-description">Every verification is backed by credible sources, so you can trust the information you receive.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <i class="lucide-layers" aria-hidden="true"></i>
+                <h3 class="card-title">Nuanced Analysis</h3>
+              </div>
+              <div class="card-content">
+                <p class="card-description">Vero doesn't just say "true" or "false" - it provides context and explains the nuances of complex topics.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">How It Works</span>
+            <h2 class="section-title">Fact-checking made simple</h2>
+            <p class="section-description">Vero makes it easy to verify information in just a few steps.</p>
+          </div>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h3 class="step-title">Ask a Question</h3>
+              <p class="step-description">Type any claim or question you want to verify.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h3 class="step-title">AI Analysis</h3>
+              <p class="step-description">Vero's AI searches and analyzes information from reliable sources.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h3 class="step-title">Get Verification</h3>
+              <p class="step-description">Receive a verification with explanation and sources.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Testimonials</span>
+            <h2 class="section-title">What people are saying</h2>
+            <p class="section-description">Users love how Vero helps them find reliable information quickly.</p>
+          </div>
+          <div class="testimonials-grid">
+            <div class="card">
+              <div class="testimonial-content">
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"></div>
+                  <div>
+                    <div class="testimonial-name">Sarah Johnson</div>
+                    <div class="testimonial-role">Journalist</div>
+                  </div>
+                </div>
+                <p class="testimonial-text">"Vero has become an essential tool in my research process. It helps me quickly verify information and find reliable sources."</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="testimonial-content">
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"></div>
+                  <div>
+                    <div class="testimonial-name">Michael Chen</div>
+                    <div class="testimonial-role">Teacher</div>
+                  </div>
+                </div>
+                <p class="testimonial-text">"I recommend Vero to all my students. It's helping them develop critical thinking skills and learn how to evaluate information."</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="testimonial-content">
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar"></div>
+                  <div>
+                    <div class="testimonial-name">Alex Rivera</div>
+                    <div class="testimonial-role">Student</div>
+                  </div>
+                </div>
+                <p class="testimonial-text">"Vero makes research for my papers so much easier. I can quickly check facts and find credible sources to cite."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta">
+        <div class="container">
+          <div class="cta-content">
+            <h2 class="cta-title">Start fact-checking today</h2>
+            <p class="cta-description">Join thousands of users who trust Vero for reliable information.</p>
+            <div class="cta-actions">
+              <a href="chat.html" class="btn btn-primary btn-lg">Try Vero Now</a>
+              <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-logo">
+          <i class="lucide-check-circle" aria-hidden="true"></i>
+          <span>Vero</span>
+        </div>
+        <div class="footer-copyright">
+          &copy; 2023 Vero AI. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+          <a href="#" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
