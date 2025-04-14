@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E">
 </head>
 <body>
   <div class="app-container">
@@ -15,7 +16,7 @@
       <div class="container header-container">
         <div class="header-left">
           <a href="index.html" class="logo">
-            <i class="lucide-check-circle" aria-hidden="true"></i>
+            <i class="icon-circle-check" aria-hidden="true"></i>
             <span class="logo-text">Vero</span>
           </a>
           <nav class="main-nav">
@@ -25,6 +26,10 @@
           </nav>
         </div>
         <div class="header-right">
+          <button id="theme-toggle" class="btn btn-icon btn-ghost theme-toggle" aria-label="Toggle theme">
+            <i class="icon-sun" id="theme-toggle-light-icon" aria-hidden="true"></i>
+            <i class="icon-moon" id="theme-toggle-dark-icon" aria-hidden="true"></i>
+          </button>
           <a href="chat.html" class="btn btn-primary">Try Vero Now</a>
         </div>
       </div>
@@ -46,7 +51,7 @@
             <div class="chat-preview">
               <div class="chat-preview-header">
                 <div class="chat-preview-header-left">
-                  <i class="lucide-check-circle" aria-hidden="true"></i>
+                  <i class="icon-circle-check" aria-hidden="true"></i>
                   <span class="chat-preview-title">Vero</span>
                   <span class="chat-preview-badge">AI Fact Checker</span>
                 </div>
@@ -62,7 +67,7 @@
                   <div class="chat-preview-avatar ai">V</div>
                   <div class="chat-preview-bubble ai">
                     <span class="verification-badge">
-                      <i class="lucide-alert-circle" aria-hidden="true"></i>
+                      <i class="lucide-circle-alert" aria-hidden="true"></i>
                       Partially Verified
                     </span>
                     <p>Regular vitamin C supplementation does not prevent colds in the general population, but it may reduce cold duration and severity by about 8-14%. For people under high physical stress (like marathon runners), vitamin C may reduce cold incidence by up to 50%.</p>
@@ -91,7 +96,7 @@
           <div class="features-grid">
             <div class="card">
               <div class="card-header">
-                <i class="lucide-zap" aria-hidden="true"></i>
+                <i class="icon-zap" aria-hidden="true"></i>
                 <h3 class="card-title">Instant Verification</h3>
               </div>
               <div class="card-content">
@@ -100,7 +105,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <i class="lucide-book-open" aria-hidden="true"></i>
+                <i class="icon-book-open" aria-hidden="true"></i>
                 <h3 class="card-title">Reliable Sources</h3>
               </div>
               <div class="card-content">
@@ -109,7 +114,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <i class="lucide-layers" aria-hidden="true"></i>
+                <i class="icon-layers" aria-hidden="true"></i>
                 <h3 class="card-title">Nuanced Analysis</h3>
               </div>
               <div class="card-content">
@@ -216,11 +221,11 @@
     <footer class="footer">
       <div class="container footer-container">
         <div class="footer-logo">
-          <i class="lucide-check-circle" aria-hidden="true"></i>
+          <i class="lucide-circle-check" aria-hidden="true"></i>
           <span>Vero</span>
         </div>
         <div class="footer-copyright">
-          &copy; 2023 Vero AI. All rights reserved.
+          &copy; 2025 Vero AI. All rights reserved.
         </div>
         <div class="footer-links">
           <a href="#" class="footer-link">Privacy</a>
